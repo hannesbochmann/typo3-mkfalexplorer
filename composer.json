@@ -18,5 +18,9 @@
 	},
 	"replace": {
 		"typo3-ter/mkfalexplorer": "*"
+	},
+	"require" : { 
+		"digedag/rn-base" : "~0.15.15",
+		"typo3/cms" : "~6.2@stable"
 	}
 }
