@@ -1,0 +1,22 @@
+{
+	"name" : "dmk/mkfalexplorer",
+	"description" : "Provides an windows explorer function for FAL-References",
+	"version" : "0.0.1",
+	"type" : "typo3-cms-extension",
+	"keywords" : ["TYPO3 CMS", "links", "fal", "explorer"],
+	"homepage" : "http://www.dmk-ebusiness.de/",
+	"license" : "GPL-2.0+",
+	"authors" : [
+		{
+			"name" : "Eric Hertwig",
+			"email" : "dev@dmk-ebusiness.de",
+			"role" : "Developer"
+		}
+	],
+	"support": {
+		"email": "dev@dmk-ebusiness.de"
+	},
+	"replace": {
+		"typo3-ter/mkfalexplorer": "*"
+	}
+}
