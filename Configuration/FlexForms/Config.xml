@@ -1,0 +1,63 @@
+<T3DataStructure>
+	<meta type="array">
+		<langChildren>0</langChildren>
+		<langDisable>1</langDisable>
+	</meta>
+	<sheets>
+	<sDEF>
+	<ROOT>
+		<TCEforms>
+            <sheetTitle>LLL:EXT:mkfalexplorer/Resources/Private/Language/Backend.xml:plugin.mkfalexplorer.flexform.action</sheetTitle>
+		</TCEforms>
+		<type>array</type>
+		<el>
+			<path>
+				<TCEforms>
+					<exclude>0</exclude>
+					<label>LLL:EXT:mkfalexplorer/Resources/Private/Language/Backend.xml:plugin.mkfalexplorer.flexform.data</label>
+					<config>
+						<type>input</type>
+						<size>48</size>
+						<eval>required,trim</eval>
+						<wizards type="array">
+							<_PADDING>2</_PADDING>
+							<link type="array">
+								<type>popup</type>
+								<title>LLL:EXT:mkfalexplorer/Resources/Private/Language/Backend.xml:plugin.mkfalexplorer.flexform.path</title>
+								<icon>link_popup.gif</icon>
+								<script>browse_links.php?mode=wizard&amp;act=folder</script>
+								<params type="array">
+									<blindLinkOptions>page,url,mail,spec,file</blindLinkOptions>
+								</params>
+								<JSopenParams>height=500,width=400,status=0,menubar=0,scrollbars=1</JSopenParams>
+							</link>
+						</wizards>
+					</config>
+				</TCEforms>
+			</path>
+			<action>
+				<TCEforms>
+					<label>LLL:EXT:mkfalexplorer/Resources/Private/Language/Backend.xml:plugin.mkfalexplorer.flexform.options</label>
+					<config>
+						<type>select</type>
+						<items type="array">
+							<numIndex index="0" type="array">
+								<numIndex index="0">LLL:EXT:mkfalexplorer/Resources/Private/Language/Backend.xml:plugin.mkfalexplorer.flexform.showFilelist</numIndex>
+								<numIndex index="1">Tx_Mkfalexplorer_Action_ShowList</numIndex>
+							</numIndex>
+							<numIndex index="1" type="array">
+								<numIndex index="0">LLL:EXT:mkfalexplorer/Resources/Private/Language/Backend.xml:plugin.mkfalexplorer.flexform.showFolderexplorer</numIndex>
+								<numIndex index="1">Tx_Mkfalexplorer_Action_ShowExplorer</numIndex>
+							</numIndex>
+						</items>
+                        <multiple>1</multiple>
+						<maxitems>10</maxitems>
+						<size>20</size>
+					</config>
+				</TCEforms>
+			</action>
+		</el>
+	</ROOT>
+	</sDEF>
+	</sheets>
+</T3DataStructure>

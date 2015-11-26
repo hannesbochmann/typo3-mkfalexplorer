@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="sys_file_metadata.isLink">ist Link?</label>
+			<label index="sys_file_metadata.link">Link</label>
+            <label index="plugin.mkfalexplorer.flexform.action">MK Falexplorer</label>
+            <label index="plugin.mkfalexplorer.flexform.options">Plugin Options</label>
+            <label index="plugin.mkfalexplorer.flexform.showFilelist">Show Filelist</label>
+            <label index="plugin.mkfalexplorer.flexform.showFolderexplorer">Show FolderExplorer</label>
+			<label index="plugin.mkfalexplorer.flexform.data">Data Source</label>
+			<label index="plugin.mkfalexplorer.flexform.path">Choose Folder</label>
+		</languageKey>
+	</data>
+</T3locallang>
