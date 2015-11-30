@@ -43,17 +43,22 @@ class Tx_Mkfalexplorer_Action_ShowExplorer extends tx_rnbase_action_BaseIOC {
 	 * @return string error msg or null
 	 */
 	public function handleRequest(&$parameters, &$configurations, &$viewData) {
-
 		$config = explode(':', $configurations->getConfigArray()['path']);
-
-		var_dump($config);
 		$storageId = $config[1];
 		$folderIdentifyer = $config[2];
 
-		/* @var $folders Tx_Mkfalexplorer_Utility_Folder */
-		$folderUtility = tx_rnbase::makeInstance('Tx_Mkfalexplorer_Utility_Folder');
+        /* @var $folderUtility Tx_Mkfalexplorer_Utility_Folder */
+        $folderUtility = tx_rnbase::makeInstance('Tx_Mkfalexplorer_Utility_Folder');
 
-		$viewData->offsetSet('folders', $folderUtility::getFolder($storageId, $folderIdentifyer));
+        $baseFolderName = $folderUtility->getFolderName($storageId, $folderIdentifyer);
+
+
+
+        $folderArray = $folderUtility::getFolder($storageId, $folderIdentifyer);
+        $folderarrayComp[$baseFolderName] = $folderArray;
+
+		$viewData->offsetSet('folders', $folderarrayComp);
+        $viewData->offsetSet('baseFolderName', $folderUtility::getFolderName($storageId, $folderIdentifyer));
 
 		return null;
 	}

@@ -1,7 +1,30 @@
 ###EXPLORER###
+    <script>
+        function loadFolder( key, value ){
+            key = encodeURIComponent(key);
+            value = encodeURIComponent(value);
 
-###FOLDERITEM###
-<li><a href="###PATH###">###NAME###</a></li>
-###FOLDERITEM###
+            var s = document.location.search;
+            var kvp = key + "=" + value;
+            var r = new RegExp("(&|\\?)" + key + "=[^\&]*");
+
+            s = s.replace(r,"$1" + kvp);
+
+            if(!RegExp.$1) {
+                s += (s.length>0 ? '&' : '?') + kvp;
+            }
+            document.location.search = s;
+        }
+
+        jQuery(document).ready(function() {
+            jQuery('li[data-folderId]').click(function(e) {
+                loadFolder('fileFolderPath', jQuery(e.target).data('folderid'));
+            });
+        });
+    </script>
+
+    <h2>###BASEFOLDERNAME###</h2>
+
+    ###FOLDEREXPLORER###
 
 ###EXPLORER###
