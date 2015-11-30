@@ -59,7 +59,7 @@ class Tx_Mkfalexplorer_Views_Explorer extends tx_rnbase_view_Base {
 		$return = '<ul>';
 		foreach ($arr as $item => $value) {
 
-			$return .= '<li data-folderId="'. $item .'">' . $folderUtility::getFolderName($storageId, $item) . (is_array($value) ? self::makeExplorer($value, $template, $configurations, $storageId) : '') . '</li>';
+			$return .= '<li><a class="listFolder" data-folderId="'. $item .'">' . $folderUtility::getFolderName($storageId, $item) . '</a>'. (is_array($value) ? self::makeExplorer($value, $template, $configurations, $storageId) : '') . '</li>';
 		}
 		$return .= '</ul>';
 		return $return;
