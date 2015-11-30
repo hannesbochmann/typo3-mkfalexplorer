@@ -32,7 +32,11 @@ tx_rnbase::load('tx_mklib_util_TCA');
 				'wizards' => tx_mklib_util_TCA::getWizards(
 					'',
 					array(
-						'link' => 1
+						'link' => array (
+                            'params'   => array(
+                                'blindLinkOptions' => 'mail,folder'
+                            )
+                        )
 					)
 				)
 			)
