@@ -1,9 +1,9 @@
 <?php
-/***************************************************************
+/**
  *  Copyright notice
  *
- * (c) 2015 DMK E-BUSINESS GmbH <dev@dmk-ebusiness.de>
- * All rights reserved
+ *  (c) 2015 Eric Hertwig <dev@dmk-ebusiness.de>
+ *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
  *  free software; you can redistribute it and/or modify
@@ -20,7 +20,7 @@
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ */
 
 use \TYPO3\CMS\Core\Resource\ResourceFactory;
 use \TYPO3\CMS\Core\Resource\Folder;
@@ -40,6 +40,8 @@ class Tx_Mkfalexplorer_Utility_Folder {
 	/**
 	 * returns a multidimensional array of FolderStructure
 	 *
+	 * @param int $storageId
+	 * @param string $identifyer
 	 * @return array
 	 */
 	public static function getFolder($storageId, $identifyer) {
@@ -63,6 +65,13 @@ class Tx_Mkfalexplorer_Utility_Folder {
 		return $result;
 	}
 
+	/**
+	 * returns folder name from identifyer
+	 *
+	 * @param int $storageId
+	 * @param string $identifyer
+	 * @return string
+	 */
 	public static function getFolderName($storageId, $identifyer) {
 		$resourceFactory = ResourceFactory::getInstance();
 		$storageObject = $resourceFactory->getStorageObject($storageId);
@@ -74,6 +83,13 @@ class Tx_Mkfalexplorer_Utility_Folder {
 		return $lastPathPart;
 	}
 
+	/**
+	 * returns parent folder name from identifyer
+	 *
+	 * @param int $storageId
+	 * @param string $identifyer
+	 * @return string
+	 */
 	public static function getParentFolderName($storageId, $identifyer){
 		$resourceFactory = ResourceFactory::getInstance();
 		$storageObject = $resourceFactory->getStorageObject($storageId);
@@ -85,6 +101,13 @@ class Tx_Mkfalexplorer_Utility_Folder {
 		return $parentPathPart;
 	}
 
+	/**
+	 * returns folder name from identifyer
+	 *
+	 * @param int $storageId
+	 * @param string $identifyer
+	 * @return TYPO3\CMS\Core\Resource\File[]
+	 */
 	public static function getFilesInFolder($storageId, $identifyer){
 		$resourceFactory = ResourceFactory::getInstance();
 		$storageObject = $resourceFactory->getStorageObject($storageId);
