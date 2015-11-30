@@ -26,10 +26,22 @@ tx_rnbase::load('tx_rnbase_view_Base');
 
 class Tx_Mkfalexplorer_Views_List extends tx_rnbase_view_Base {
 
-	function createOutput($template, &$viewData, &$configurations, &$formatter) {
+    function createOutput($template, &$viewData, &$configurations, &$formatter) {
+        $items =& $viewData->offsetGet('items');
 
-		return 'Liste kommt hier';
-	}
+        /* @var $listBuilder tx_rnbase_util_ListBuilder */
+        $listBuilder = tx_rnbase::makeInstance('tx_rnbase_util_ListBuilder');
+
+        $template = $listBuilder->render($items,
+            $viewData, $template, 'Tx_Mkfalexplorer_Marker_Listitem',
+            'fiellist.file.', 'FOLDERITEM', $formatter);
+
+        $markerArray = array();
+        $subpartArray = array();
+
+        $out = tx_rnbase_util_Templates::substituteMarkerArrayCached($template, $markerArray, $subpartArray);
+        return $out;
+    }
 	/**
 	 * Subpart der im HTML-Template geladen werden soll. Dieser wird der Methode
 	 * createOutput automatisch als $template übergeben.

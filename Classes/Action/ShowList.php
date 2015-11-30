@@ -22,6 +22,7 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  */
 
+use \TYPO3\CMS\Core\Utility\GeneralUtility;
 tx_rnbase::load('tx_rnbase_action_BaseIOC');
 
 /**
@@ -37,42 +38,26 @@ tx_rnbase::load('tx_rnbase_action_BaseIOC');
 class Tx_Mkfalexplorer_Action_ShowList extends tx_rnbase_action_BaseIOC {
 	/**
 	 *
-	 * @param array_object $parameters
+	 * @param tx_rnbase_parameters $parameters
 	 * @param tx_rnbase_configurations $configurations
 	 * @param array $viewData
 	 * @return string error msg or null
 	 */
 	public function handleRequest(&$parameters, &$configurations, &$viewData) {
 
-		$config = explode(':', $configurations->getConfigArray()['path']);
+        $config = explode(':', $configurations->getConfigArray()['path']);
 		$storageId = $config[1];
 		$folderIdentifyer = $config[2];
 
+        if (GeneralUtility::_GP('fileFolderPath') != null) {
+            $folderIdentifyer = GeneralUtility::_GP('fileFolderPath');
+        }
 
 		/* @var $folderUtility Tx_Mkfalexplorer_Utility_Folder */
 		$folderUtility = tx_rnbase::makeInstance('Tx_Mkfalexplorer_Utility_Folder');
-		$out = '';
-		foreach ($folderUtility::getFilesInFolder($storageId, $folderIdentifyer) as $file) {
-			//$out .= $f
-		}
-		var_dump($folderUtility::getFilesInFolder($storageId, $folderIdentifyer));
 
-
-//		$srv = tx_t3sponsors_util_ServiceRegistry::getSponsorService();
-//		$filter = tx_rnbase_filter_BaseFilter::createFilter($parameters, $configurations, $viewdata, $this->getConfId(). 'sponsor.filter.');
-//		$fields = array();
-//		$options = array();
-//		$filter->init($fields, $options);
-//		$service = tx_t3sponsors_util_ServiceRegistry::getSponsorService();
-//		$cfg = array();
-//		$cfg['colname'] = 'name1';
-//		$cfg['searchcallback'] = array($service, 'search');
-//		tx_rnbase_filter_BaseFilter::handleCharBrowser($configurations, $this->getConfId().'sponsor.charbrowser', $viewdata, $fields, $options, $cfg);
-//		tx_rnbase_filter_BaseFilter::handlePageBrowser($configurations, $this->getConfId().'sponsor.pagebrowser', $viewdata, $fields, $options, $cfg);
-//		$sponsors = $srv->search($fields, $options);
-//		$viewdata->offsetSet('sponsors', $sponsors);
-//		return null;
-
+        $items = $folderUtility::getFilesInFolder($storageId, $folderIdentifyer);
+        $viewData->offsetSet('items', $items);
 
 		return null;
 	}
