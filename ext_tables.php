@@ -2,9 +2,11 @@
 
 defined('TYPO3_MODE') || die('Access denied.');
 
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility as EMUtility;
+
 $_EXTKEY = 'mkfalexplorer';
-$_EXT_PATH = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY);
-$_EXT_RELPATH = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY);
+$_EXT_PATH = EMUtility::extPath($_EXTKEY);
+$_EXT_RELPATH = EMUtility::extRelPath($_EXTKEY);
 
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist']['tx_mkfalexplorer'] = 'pi_flexform';
 
@@ -13,7 +15,7 @@ $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist']['tx_mkfalexpl
 );
 
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPlugin(
+EMUtility::addPlugin(
 	array(
 		//@TODO: Use LanguageFiles
 		'MK FalExplorer',
@@ -22,6 +24,6 @@ $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist']['tx_mkfalexpl
 	)
 );
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile(
+EMUtility::addStaticFile(
 	$_EXTKEY, 'Configuration/Typoscript/Base/', 'MK Falexplorer Base'
 );
