@@ -34,11 +34,11 @@ class Tx_Mkfalexplorer_Views_Explorer extends tx_rnbase_view_Base {
 		$folders = &$viewData->offsetGet('folders');
 
         $markerArray['###BASEFOLDERNAME###'] = &$viewData->offsetGet('baseFolderName');
-        $markerArray['###FOLDEREXPLORER###'] = self::makeExplorer($folders, $template, $configurations, $storageId);
+        $markerArray['###FOLDEREXPLORER###'] = self::makeExplorer($folders, $configurations, $storageId);
 
         $subpartArray = array();
-        $out = tx_rnbase_util_Templates::substituteMarkerArrayCached($template, $markerArray, $subpartArray);
 
+        $out = tx_rnbase_util_Templates::substituteMarkerArrayCached($template, $markerArray, $subpartArray);
 		return $out;
 	}
 	/**
@@ -51,15 +51,29 @@ class Tx_Mkfalexplorer_Views_Explorer extends tx_rnbase_view_Base {
 		return '###EXPLORER###';
 	}
 
-	private static function makeExplorer($arr, $template, $configurations, $storageId)
+	/**
+	 * Return a String of recursive array
+	 *
+	 * @param $arr
+	 * @param $configurations
+	 * @param $storageId
+	 *
+	 * @return string
+	 */
+	private static function makeExplorer($arr, $configurations, $storageId)
 	{
-
 		/* @var $folderUtility Tx_Mkfalexplorer_Utility_Folder */
 		$folderUtility = tx_rnbase::makeInstance( 'Tx_Mkfalexplorer_Utility_Folder' );
 		$return = '<ul>';
-		foreach ($arr as $item => $value) {
 
-			$return .= '<li><a class="listFolder" data-folderId="'. $item .'">' . $folderUtility::getFolderName($storageId, $item) . '</a>'. (is_array($value) ? self::makeExplorer($value, $template, $configurations, $storageId) : '') . '</li>';
+		//@TODO: in Template auslagern
+		foreach ($arr as $item => $value) {
+			$return .= '<li><a data-path="' . $configurations->_dataStore['path'] . '" data-folderId="'. $item .'">' .
+			           $folderUtility::getFolderName($storageId, $item) . '</a>'.
+				           (is_array($value) ?
+							self::makeExplorer($value, $configurations, $storageId) :
+					           '') .
+			           '</li>';
 		}
 		$return .= '</ul>';
 		return $return;

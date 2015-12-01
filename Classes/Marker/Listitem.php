@@ -42,24 +42,23 @@ class Tx_Mkfalexplorer_Marker_Listitem extends tx_rnbase_util_BaseMarker {
      */
     public function parseTemplate($template, &$item, &$formatter, $confId, $marker) {
 
-        // Es wird das MarkerArray mit den Daten des Records gefüllt.
-
         $markerArray['###NAME###'] = $item->getName();
         $markerArray['###ID###'] = $item->getUid();
 
+	    //if item is extenden with link meta data
         if($item->getProperty('isLink')) {
             $link = $item->getProperty('link');
 
-            if(preg_match('/^file:/', $link) === 1) {
+            if(preg_match('/^file:/', $link) === 1) { //if is FAL file
                 // FileReference
                 $resFactory = ResourceFactory::getInstance();
 
                 /* @var $fileObject TYPO3\CMS\Core\Resource\File */
                 $fileObject = $resFactory->getFileObject(str_replace('file:', '', $link));
                 $link = $fileObject->getPublicUrl();
-            } elseif (preg_match('/\d/', $link) === 1) {
+            } elseif (preg_match('/\d/', $link) === 1) { // if is PageID
                 $link = '/index.php?id=' . $link;
-            } else  {
+            } else  { // if is external Link
                 $link = '//' . $link;
             }
         } else {
@@ -67,10 +66,11 @@ class Tx_Mkfalexplorer_Marker_Listitem extends tx_rnbase_util_BaseMarker {
         }
 
 
-        $markerArray['###LINKP###'] =  $item->getProperty('link');
+	    $markerArray['###LINKP###'] =  $item->getProperty('link');
         $markerArray['###LINK###'] = $link;
 
         $wrappedSubpartArray = $subpartArray = array();
+
         $out = tx_rnbase_util_Templates::substituteMarkerArrayCached($template, $markerArray, $subpartArray, $wrappedSubpartArray);
         return $out;
     }

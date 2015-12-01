@@ -55,13 +55,13 @@ class Tx_Mkfalexplorer_Utility_Folder {
 		$result = array();
 
 		foreach($foldersInFolder as $folder => $value) {
-
 			if(count($storageObject->getFoldersInFolder(new Folder($storageObject, $folder, 'Folder')))) {
 				$result[$folder] = self::getFolder($storageObject->getUid(), $folder);
 			} else {
 				$result[$folder] = $folder;
 			}
 		}
+
 		return $result;
 	}
 
@@ -114,5 +114,20 @@ class Tx_Mkfalexplorer_Utility_Folder {
 		$folder = new Folder($storageObject, $identifyer, 'Filelist');
 
 		return $folder->getFiles();
+	}
+
+	/**
+	 * returns folders in folder
+	 *
+	 * @param int $storageId
+	 * @param string $identifyer
+	 * @return Folder[]
+	 */
+	public static function getFoldersInFolder($storageId, $identifyer){
+		$resourceFactory = ResourceFactory::getInstance();
+		$storageObject = $resourceFactory->getStorageObject($storageId);
+		$folder = new Folder($storageObject, $identifyer, 'Filelist');
+
+		return $folder->getSubfolders();
 	}
 }

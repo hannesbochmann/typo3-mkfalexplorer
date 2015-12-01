@@ -22,31 +22,40 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  */
 
+	use \TYPO3\CMS\Core as Core;
+	use \TYPO3\CMS\Extbase\Utility as Utility;
+	use \TYPO3\CMS\Frontend as Frontend;
 
-use \TYPO3\CMS\Core as Core;
-use \TYPO3\CMS\Extbase\Utility as Utility;
-use \TYPO3\CMS\Frontend as Frontend;
+	require_once Core\Utility\ExtensionManagementUtility::extPath(
+	    'rn_base', 'class.tx_rnbase.php'
+	);
 
-require_once Core\Utility\ExtensionManagementUtility::extPath(
-    'rn_base', 'class.tx_rnbase.php'
-);
+	/* @var $eIDUtility Tx_Mkfalexplorer_Utility_Eid */
+	$eIDUtility = tx_rnbase::makeInstance('Tx_Mkfalexplorer_Utility_Eid');
 
-// Basic TSFE Setup
-/* @var $TSFE TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController */
-$TSFE = Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController', $TYPO3_CONF_VARS, 0, 0);
+	//@TODO hand over PageID via ajaxcall
+	$mkfalexplorerTS = $eIDUtility::getTSWithPageID(52)['plugin.']['tx_mkfalexplorer.'];
 
-// Get FE User Information
-$TSFE->initFEuser();
-// Important: no Cache for Ajax stuff
-$TSFE->set_no_cache();
-$TSFE->initTemplate();
-$TSFE->cObj = Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer');
-$TSFE->settingLanguage();
-$TSFE->settingLocale();
+	// Exit if TS for Mkfalexplorer issnt setup
+	if(!isset($mkfalexplorerTS)){
+		echo '<p>MKFalexplorer is not configured for this page</p>';
+		exit;
+	}
 
-$a = 1;
+	/* @var $action tx_rnbase_controller */
+	$action = tx_rnbase::makeInstance('tx_rnbase_controller');
 
-$fileList = tx_rnbase::makeInstance('Tx_Mkfalexplorer_Action_ShowList');
+	$configurationArray = [
+		'userFunc'              => $mkfalexplorerTS['userFunc'],
+		'defaultAction'         => 'Tx_Mkfalexplorer_Action_ShowList',
+		'qualifier'             => $mkfalexplorerTS['qualifier'],
+		'templatePath'          => $mkfalexplorerTS['templatePath'],
+		'flexform'              => $mkfalexplorerTS['flexform'],
+		'locallangFilename'     => $mkfalexplorerTS['locallangFilename'],
+		'mkfalexplorerPath'     => $_POST['path'],
+		'mkfalexplorerfolderId' => $_POST['folderID']
+	];
 
+	$out = $action->main('', $configurationArray);
 
-echo 'test';
+	echo $out;

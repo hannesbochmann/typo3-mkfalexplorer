@@ -36,6 +36,7 @@ tx_rnbase::load('tx_rnbase_action_BaseIOC');
  * 					GNU Lesser General Public License, version 3 or later
  */
 class Tx_Mkfalexplorer_Action_ShowList extends tx_rnbase_action_BaseIOC {
+
 	/**
 	 *
 	 * @param tx_rnbase_parameters $parameters
@@ -45,19 +46,29 @@ class Tx_Mkfalexplorer_Action_ShowList extends tx_rnbase_action_BaseIOC {
 	 */
 	public function handleRequest(&$parameters, &$configurations, &$viewData) {
 
-        $config = explode(':', $configurations->getConfigArray()['path']);
-		$storageId = $config[1];
-		$folderIdentifyer = $config[2];
+		if(isset($_POST['eID'])){
+			$path = $_POST['path'];
+			$config = explode(':', $_POST['path']);
+			$storageId = $config[1];
+			$folderIdentifyer = $_POST['folderID'];
+		} else {
+			$path = $configurations->getConfigArray()['path'];
+			$config = explode(':', $path);
+			$storageId = $config[1];
+			$folderIdentifyer = $config[2];
+		}
 
-        if (GeneralUtility::_GP('fileFolderPath') != null) {
-            $folderIdentifyer = GeneralUtility::_GP('fileFolderPath');
-        }
 
 		/* @var $folderUtility Tx_Mkfalexplorer_Utility_Folder */
 		$folderUtility = tx_rnbase::makeInstance('Tx_Mkfalexplorer_Utility_Folder');
 
         $items = $folderUtility::getFilesInFolder($storageId, $folderIdentifyer);
+
+		// @Todo: Remove if rn_base is ready fuer associative arrays in class.tx_rnbase_util_ListMarker.php
+		$items = array_values($items);
+
         $viewData->offsetSet('items', $items);
+		$viewData->offsetSet('path', $path);
 
 		return null;
 	}
