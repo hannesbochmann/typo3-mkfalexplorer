@@ -4,6 +4,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'description' => 'Provides an windows explorer function for FAL-References',
 	'category' => 'fe',
 	'state' => 'beta',
+	'version' => '0.0.1',
 	'uploadfolder' => 0,
 	'clearCacheOnLoad' => 1,
 	'author' => 'Eric Hertwig',
