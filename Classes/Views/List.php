@@ -50,6 +50,7 @@ class Tx_Mkfalexplorer_Views_List extends tx_rnbase_view_Base {
 	 *
 	 * @return string
 	 */
+
 	function getMainSubpart() {
 		return '###LIST###';
 	}

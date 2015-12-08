@@ -42,32 +42,19 @@ class Tx_Mkfalexplorer_Marker_Listitem extends tx_rnbase_util_BaseMarker {
      */
     public function parseTemplate($template, &$item, &$formatter, $confId, $marker) {
 
+	    if($item->isMissing()) return '';
+
         $markerArray['###NAME###'] = $item->getName();
         $markerArray['###ID###'] = $item->getUid();
 
-	    //if item is extenden with link meta data
-        if($item->getProperty('isLink')) {
-            $link = $item->getProperty('link');
 
-            if(preg_match('/^file:/', $link) === 1) { //if is FAL file
-                // FileReference
-                $resFactory = ResourceFactory::getInstance();
-
-                /* @var $fileObject TYPO3\CMS\Core\Resource\File */
-                $fileObject = $resFactory->getFileObject(str_replace('file:', '', $link));
-                $link = $fileObject->getPublicUrl();
-            } elseif (preg_match('/\d/', $link) === 1) { // if is PageID
-                $link = '/index.php?id=' . $link;
-            } else  { // if is external Link
-                $link = '//' . $link;
-            }
-        } else {
-            $link = $item->getPublicUrl();
-        }
-
+	    /* @var $linkUtility Tx_Mkfalexplorer_Utility_Path */
+	    $linkUtility = tx_rnbase::makeInstance('Tx_Mkfalexplorer_Utility_Path');
 
 	    $markerArray['###LINKP###'] =  $item->getProperty('link');
-        $markerArray['###LINK###'] = $link;
+        $markerArray['###LINK###'] = $linkUtility::getLink($item);
+
+	    $markerArray['###EXTICONPATH###'] = $linkUtility::getIconImagePath($item);
 
         $wrappedSubpartArray = $subpartArray = array();
 
