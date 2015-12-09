@@ -26,24 +26,29 @@ tx_rnbase::load('tx_rnbase_view_Base');
 
 class Tx_Mkfalexplorer_Views_List extends tx_rnbase_view_Base {
 
-    function createOutput($template, &$viewData, &$configurations, &$formatter) {
+	function createOutput($template, &$viewData, &$configurations, &$formatter) {
 
-	    /* @var $listBuilder tx_rnbase_util_ListBuilder */
-	    $listBuilder = tx_rnbase::makeInstance('tx_rnbase_util_ListBuilder');
+		/* @var $listBuilder tx_rnbase_util_ListBuilder */
+		$listBuilder = tx_rnbase::makeInstance('tx_rnbase_util_ListBuilder');
 
-	    $markerArray = array();
-	    $subpartArray = array();
+		$markerArray = array();
+		$subpartArray = array();
 
-        $items = &$viewData->offsetGet('items');
-        $template = $listBuilder->render($items,
-            $viewData, $template, 'Tx_Mkfalexplorer_Marker_Listitem',
-            'fiellist.file.', 'FOLDERITEM', $formatter);
+		$items = &$viewData->offsetGet('items');
+		$template = $listBuilder->render(
+			$items,
+			$viewData, $template, 'Tx_Mkfalexplorer_Marker_Listitem',
+			$this->getController()->getConfId() . 'filelist.file.',
+			'FOLDERITEM', $formatter
+		);
 
-	    $markerArray['###PATH###'] = &$viewData->offsetGet('path');
+		$markerArray['###PATH###'] = &$viewData->offsetGet('path');
 
-        $out = tx_rnbase_util_Templates::substituteMarkerArrayCached($template, $markerArray, $subpartArray);
-        return $out;
-    }
+		$out = tx_rnbase_util_Templates::substituteMarkerArrayCached(
+			$template, $markerArray, $subpartArray
+		);
+		return $out;
+	}
 	/**
 	 * Subpart der im HTML-Template geladen werden soll. Dieser wird der Methode
 	 * createOutput automatisch als $template übergeben.

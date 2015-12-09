@@ -1,23 +1,23 @@
 includeLibs.tx_rnbase_controller = EXT:rn_base/class.tx_rnbase_controller.php
 includeLibs.tx_rnbase_util_TSFAL = EXT:rn_base/util/class.tx_rnbase_util_TSFAL.php
 
-plugin.tx_mkfalexplorer = USER
+plugin.tx_mkfalexplorer = USER_INT
 plugin.tx_mkfalexplorer {
 	userFunc = tx_rnbase_controller->main
 	defaultAction = Tx_Mkfalexplorer_Action_ShowList
+	flexform = Config.xml
 	qualifier = mkfalexplorer
-	templatePath = {$config.tx_mkfalexplorer.path.templates}
+	templatePath = {$plugin.tx_mkfalexplorer.path.templates}
+	locallangFilename = EXT:mkfalexplorer/Resources/Private/Language/locallang.xml
 }
 
+tt_content.list.20.tx_mkfalexplorer =< plugin.tx_mkfalexplorer
 
 
-includeLibs.tx_rnbase_controller = EXT:rn_base/class.tx_rnbase_controller.php
-includeLibs.tx_rnbase_util_TSFAL = EXT:rn_base/util/class.tx_rnbase_util_TSFAL.php
-plugin.tx_mkfalexplorer                = USER
-plugin.tx_mkfalexplorer.flexform       = Config.xml
-plugin.tx_mkfalexplorer.userFunc       = tx_rnbase_controller->main
-plugin.tx_mkfalexplorer.defaultAction  = Tx_Mkfalexplorer_Action_ShowList
-plugin.tx_mkfalexplorer.qualifier      = mkfalexplorer
-plugin.tx_mkfalexplorer.templatePath   = EXT:mkfalexplorer/Resources/Private/Templates
-plugin.tx_mkfalexplorer.locallangFilename = EXT:mkfalexplorer/Resources/Private/Language/locallang.xml
-tt_content.list.20.tx_mkfalexplorer    =< plugin.tx_mkfalexplorer
+plugin.tx_mkfalexplorer {
+	list {
+		filelist.file {
+			# Config for a File item goes here
+		}
+	}
+}

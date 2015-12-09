@@ -1,4 +1,4 @@
 ### System-Pfade
-config.tx_mkfalexplorer.path{
-	templates = EXT:tx_mkfalexplorer/Resources/Private/Templates
+plugin.tx_mkfalexplorer {
+	path.templates = EXT:mkfalexplorer/Resources/Private/Templates
 }

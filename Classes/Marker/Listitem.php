@@ -32,33 +32,50 @@ tx_rnbase::load('tx_rnbase_util_Templates');
  */
 class Tx_Mkfalexplorer_Marker_Listitem extends tx_rnbase_util_BaseMarker {
 
-    /**
-     * @param string $template das HTML-Template
-     * @param TYPO3\CMS\Core\Resource\File $item
-     * @param tx_rnbase_util_FormatUtil $formatter der zu verwendente Formatter
-     * @param string $confId Pfad der TS-Config
-     * @param string $marker Name des Markers
-     * @return String das geparste Template
-     */
-    public function parseTemplate($template, &$item, &$formatter, $confId, $marker) {
+	/**
+	 * @param string $template das HTML-Template
+	 * @param TYPO3\CMS\Core\Resource\File $item
+	 * @param tx_rnbase_util_FormatUtil $formatter der zu verwendente Formatter
+	 * @param string $confId Pfad der TS-Config
+	 * @param string $marker Name des Markers
+	 * @return String das geparste Template
+	 */
+	public function parseTemplate(
+		$template, &$item, &$formatter, $confId, $marker = 'ITEM_'
+	) {
 
-	    if($item->isMissing()) return '';
+		if($item->isMissing()) return '';
 
-        $markerArray['###NAME###'] = $item->getName();
-        $markerArray['###ID###'] = $item->getUid();
+		$markerArray = array();
+		$markerArray['###' . $marker . '_NAME###'] = $item->getName();
+		$markerArray['###' . $marker . '_ID###'] = $item->getUid();
 
+		/* @var $linkUtility Tx_Mkfalexplorer_Utility_Path */
+		$linkUtility = tx_rnbase::makeInstance('Tx_Mkfalexplorer_Utility_Path');
 
-	    /* @var $linkUtility Tx_Mkfalexplorer_Utility_Path */
-	    $linkUtility = tx_rnbase::makeInstance('Tx_Mkfalexplorer_Utility_Path');
+		$markerArray['###' . $marker . '_LINKP###'] =  $item->getProperty('link');
+		$markerArray['###' . $marker . '_LINK###'] = $linkUtility::getLink($item);
 
-	    $markerArray['###LINKP###'] =  $item->getProperty('link');
-        $markerArray['###LINK###'] = $linkUtility::getLink($item);
+		$markerArray['###' . $marker . '_EXTICONPATH###'] = $linkUtility::getIconImagePath($item);
 
-	    $markerArray['###EXTICONPATH###'] = $linkUtility::getIconImagePath($item);
+		$wrappedSubpartArray = $subpartArray = array();
 
-        $wrappedSubpartArray = $subpartArray = array();
-
-        $out = tx_rnbase_util_Templates::substituteMarkerArrayCached($template, $markerArray, $subpartArray, $wrappedSubpartArray);
-        return $out;
-    }
+		tx_rnbase_util_Misc::callHook(
+			'mkfalexplorer',
+			'Tx_Mkfalexplorer_Marker_ListitemBeforeSubstitution',
+			array(
+				'item' => &$item,
+				'configurations'=> $formatter->getConfigurations(),
+				'confId' => $confId, 'marker' => $marker,
+				'template' => &$template, 'markerArray' => &$markerArray,
+				'subpartArray' => &$subpartArray,
+				'wrappedSubpartArray' => &$wrappedSubpartArray
+			),
+			$this
+		);
+		$out = tx_rnbase_util_Templates::substituteMarkerArrayCached(
+			$template, $markerArray, $subpartArray, $wrappedSubpartArray
+		);
+		return $out;
+	}
 }
