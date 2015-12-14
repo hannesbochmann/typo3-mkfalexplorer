@@ -7,7 +7,7 @@
 	<sDEF>
 	<ROOT>
 		<TCEforms>
-            <sheetTitle>LLL:EXT:mkfalexplorer/Resources/Private/Language/Backend.xml:plugin.mkfalexplorer.flexform.action</sheetTitle>
+			<sheetTitle>LLL:EXT:mkfalexplorer/Resources/Private/Language/Backend.xml:plugin.mkfalexplorer.flexform.action</sheetTitle>
 		</TCEforms>
 		<type>array</type>
 		<el>
@@ -49,12 +49,12 @@
 								<numIndex index="0">LLL:EXT:mkfalexplorer/Resources/Private/Language/Backend.xml:plugin.mkfalexplorer.flexform.showFolderexplorer</numIndex>
 								<numIndex index="1">Tx_Mkfalexplorer_Action_ShowExplorer</numIndex>
 							</numIndex>
-                            <numIndex index="2" type="array">
-                                <numIndex index="0">LLL:EXT:mkfalexplorer/Resources/Private/Language/Backend.xml:plugin.mkfalexplorer.flexform.showExplorerWithFiles</numIndex>
-                                <numIndex index="1">Tx_Mkfalexplorer_Action_ShowExplorerWithFiles</numIndex>
-                            </numIndex>
+							<numIndex index="2" type="array">
+								<numIndex index="0">LLL:EXT:mkfalexplorer/Resources/Private/Language/Backend.xml:plugin.mkfalexplorer.flexform.showExplorerWithFiles</numIndex>
+								<numIndex index="1">Tx_Mkfalexplorer_Action_ShowExplorerWithFiles</numIndex>
+							</numIndex>
 						</items>
-                        <multiple>1</multiple>
+						<multiple>1</multiple>
 						<maxitems>10</maxitems>
 						<size>20</size>
 					</config>

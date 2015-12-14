@@ -33,12 +33,12 @@ class Tx_Mkfalexplorer_Views_Explorer extends tx_rnbase_view_Base {
 
 		$folders = &$viewData->offsetGet('folders');
 
-        $markerArray['###BASEFOLDERNAME###'] = &$viewData->offsetGet('baseFolderName');
-        $markerArray['###FOLDEREXPLORER###'] = self::makeExplorer($folders, $configurations, $storageId);
+		$markerArray['###BASEFOLDERNAME###'] = &$viewData->offsetGet('baseFolderName');
+		$markerArray['###FOLDEREXPLORER###'] = self::makeExplorer($folders, $configurations, $storageId);
 
-        $subpartArray = array();
+		$subpartArray = array();
 
-        $out = tx_rnbase_util_Templates::substituteMarkerArrayCached($template, $markerArray, $subpartArray);
+		$out = tx_rnbase_util_Templates::substituteMarkerArrayCached($template, $markerArray, $subpartArray);
 		return $out;
 	}
 	/**
@@ -69,11 +69,11 @@ class Tx_Mkfalexplorer_Views_Explorer extends tx_rnbase_view_Base {
 		//@TODO: in Template auslagern
 		foreach ($arr as $item => $value) {
 			$return .= '<li><a class="listFolder" data-path="' . $configurations->_dataStore['path'] . '" data-folderId="'. $item .'">' .
-			           $folderUtility::getFolderName($storageId, $item) . '</a>'.
-				           (is_array($value) ?
+					   $folderUtility::getFolderName($storageId, $item) . '</a>'.
+						   (is_array($value) ?
 							self::makeExplorer($value, $configurations, $storageId) :
-					           '') .
-			           '</li>';
+							   '') .
+					   '</li>';
 		}
 		$return .= '</ul>';
 		return $return;

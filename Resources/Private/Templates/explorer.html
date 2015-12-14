@@ -1,35 +1,35 @@
 ###EXPLORER###
-    <script>
-        function loadFolder(path,folderId ){
-	        jQuery.ajax({
-		        url: "index.php",
-		        type: "post",
-		        data: {
-			        eID: "getFileListTable",
-			        path: path,
-			        folderID: folderId
-		        },
-		        dataType: "html",
-		        success: function(response) {
-			        jQuery("div[data-path='" + path + "']").html(response)
+	<script>
+		function loadFolder(path,folderId ){
+			jQuery.ajax({
+				url: "index.php",
+				type: "post",
+				data: {
+					eID: "getFileListTable",
+					path: path,
+					folderID: folderId
+				},
+				dataType: "html",
+				success: function(response) {
+					jQuery("div[data-path='" + path + "']").html(response)
 
-		        },
-		        complete: function() {
+				},
+				complete: function() {
 
-		        },
-		        error:function(exception){console.log('Exeption:'+exception);}
-	        });
-        }
+				},
+				error:function(exception){console.log('Exeption:'+exception);}
+			});
+		}
 
-        jQuery(document).ready(function() {
-            jQuery('a[data-folderId]').click(function(e) {
-                loadFolder(jQuery(e.target).data('path'), jQuery(e.target).data('folderid'));
-            });
-        });
-    </script>
+		jQuery(document).ready(function() {
+			jQuery('a[data-folderId]').click(function(e) {
+				loadFolder(jQuery(e.target).data('path'), jQuery(e.target).data('folderid'));
+			});
+		});
+	</script>
 
-    <h2>###BASEFOLDERNAME###</h2>
+	<h2>###BASEFOLDERNAME###</h2>
 
-    ###FOLDEREXPLORER###
+	###FOLDEREXPLORER###
 
 ###EXPLORER###

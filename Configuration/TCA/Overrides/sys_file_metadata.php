@@ -33,10 +33,10 @@ tx_rnbase::load('tx_mklib_util_TCA');
 					'',
 					array(
 						'link' => array (
-                            'params'   => array(
-                                'blindLinkOptions' => 'mail,folder'
-                            )
-                        )
+							'params'   => array(
+								'blindLinkOptions' => 'mail,folder'
+							)
+						)
 					)
 				)
 			)
