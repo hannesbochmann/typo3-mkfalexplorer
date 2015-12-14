@@ -66,6 +66,40 @@ class Tx_Mkfalexplorer_Utility_Folder {
 	}
 
 	/**
+	 * returns a multidimensional array of FolderStructure With Files
+	 *
+	 * @param int $storageId
+	 * @param string $identifyer
+	 * @return array
+	 */
+
+	public static function getFoldersAndFiles($storageId, $identifyer) {
+		$resourceFactory = ResourceFactory::getInstance();
+		$storageObject = $resourceFactory->getStorageObject($storageId);
+
+		$folder = new Folder($storageObject, $identifyer, 'Fielelist');
+		$foldersInFolder = $storageObject->getFoldersInFolder($folder);
+
+		$result = array();
+
+		foreach($foldersInFolder as $folder => $value) {
+			if(count($storageObject->getFoldersInFolder(new Folder($storageObject, $folder, 'Folder')))) {
+				$result[$folder] = self::getFoldersAndFiles($storageObject->getUid(), $folder);
+				if(count(self::getFilesInFolder($storageObject->getUid(), $folder)) > 0){
+					$result[$folder]['files'] = self::getFilesInFolder($storageObject->getUid(), $folder);
+				}
+			} else {
+				$result[$folder] = $folder;
+				if(count(self::getFilesInFolder($storageObject->getUid(), $folder)) > 0){
+					$result[$folder]['files'] = self::getFilesInFolder($storageObject->getUid(), $folder);
+				}
+			}
+		}
+
+		return $result;
+	}
+
+	/**
 	 * returns folder name from identifyer
 	 *
 	 * @param int $storageId

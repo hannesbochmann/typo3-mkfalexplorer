@@ -37,23 +37,38 @@ tx_rnbase::load('tx_rnbase_action_BaseIOC');
  */
 class Tx_Mkfalexplorer_Action_ShowExplorerWithFiles extends tx_rnbase_action_BaseIOC {
 
-    /**
-     *
-     * @param tx_rnbase_parameters $parameters
-     * @param tx_rnbase_configurations $configurations
-     * @param array $viewData
-     * @return string error msg or null
-     */
-    public function handleRequest(&$parameters, &$configurations, &$viewData) {
+	/**
+	 *
+	 * @param tx_rnbase_parameters $parameters
+	 * @param tx_rnbase_configurations $configurations
+	 * @param array $viewData
+	 * @return string error msg or null
+	 */
+	public function handleRequest(&$parameters, &$configurations, &$viewData) {
+
+		$config = explode(':', $configurations->getConfigArray()['path']);
+		$storageId = $config[1];
+		$folderIdentifyer = $config[2];
+
+		/* @var $folderUtility Tx_Mkfalexplorer_Utility_Folder */
+		$folderUtility = tx_rnbase::makeInstance('Tx_Mkfalexplorer_Utility_Folder');
+
+		$baseFolderName = $folderUtility->getFolderName($storageId, $folderIdentifyer);
 
 
+		$folderArray = $folderUtility::getFoldersAndFiles($storageId, $folderIdentifyer);
+		$folderarrayComp[$baseFolderName] = $folderArray;
+		$folderarrayComp['files'] = $folderUtility::getFilesInFolder($storageId, $folderIdentifyer);
 
-        return 'Wird noch implementiert!';
-    }
+		$viewData->offsetSet('folders', $folderarrayComp);
+		$viewData->offsetSet('baseFolderName', $folderUtility::getFolderName($storageId, $folderIdentifyer));
 
-    protected function getTemplateName() {return 'list';}
+		return null;
+	}
 
-    protected function getViewClassName() {return 'Tx_Mkfalexplorer_Views_List';}
+	protected function getTemplateName() {return 'explorerfiles';}
+
+	protected function getViewClassName() {return 'Tx_Mkfalexplorer_Views_ExplorerWithFiles';}
 }
 
 
