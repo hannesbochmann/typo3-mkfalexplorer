@@ -1,4 +1,4 @@
-<?php
+ <?php
 /**
  *  Copyright notice
  *
@@ -75,8 +75,7 @@ class Tx_Mkfalexplorer_Views_ExplorerWithFiles extends tx_rnbase_view_Base {
 			if(get_class(array_values($value)[0]) =='TYPO3\CMS\Core\Resource\File'){
 				/* @var $file \TYPO3\CMS\Core\Resource\File */
 				foreach ($value as $file) {
-					$return .= '<li><div class="file-image"><img src="' . $linkUtility::getIconImagePath($file) . '"/> </div>' . $linkUtility::getLink($file) .
-					 '</li>';
+					$return .= '<li class="file"><div class="file-image"><img src="' . $linkUtility::getIconImagePath($file) . '"/>'. $linkUtility::getLink($file) .' </div></li>';
 				}
 			} else {
 				$return .= '<li><a class="listFolder">' .
