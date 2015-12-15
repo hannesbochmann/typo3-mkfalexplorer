@@ -75,8 +75,8 @@ class Tx_Mkfalexplorer_Views_ExplorerWithFiles extends tx_rnbase_view_Base {
 			if(get_class(array_values($value)[0]) =='TYPO3\CMS\Core\Resource\File'){
 				/* @var $file \TYPO3\CMS\Core\Resource\File */
 				foreach ($value as $file) {
-					$return .= '<li><a href="' . $linkUtility::getLink($file) . '" target="_blank" alt="' . $file->getName() .'"> ' .
-					'<img src="' . $linkUtility::getIconImagePath($file) . '"/>' . $file->getName() . '</a></li>';
+					$return .= '<li><div class="file-image>"<img src="' . $linkUtility::getIconImagePath($file) . '"/> </div>' . $linkUtility::getLink($file) .
+					 '</li>';
 				}
 			} else {
 				$return .= '<li><a class="listFolder">' .

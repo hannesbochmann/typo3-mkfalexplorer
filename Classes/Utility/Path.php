@@ -69,30 +69,24 @@ class Tx_Mkfalexplorer_Utility_Path {
 
 		if($item->getProperty('isLink')) {
 
-			$link = $item->getProperty('link');
+			$typolink_conf=array(
+				'title' => $item->getName(),
+				'no_cache' => 0,
+				'parameter' => $item->getProperty('link'),
+				'additionalParams' => '',
+				'value' => $item->getName(),
+				'wrap' => '<div class="file-link">|</div>',
+				'useCacheHash' => 1);
 
-			if(preg_match('/^file:/', $link) === 1) {
+			/* @var $cObject TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer */
+			$cObject = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer');
 
-				/* @var $resFactory TYPO3\CMS\Core\Resource\ResourceFactory */
-				$resFactory = ResourceFactory::getInstance();
+			$link = $cObject->typolink($item->getName(), $typolink_conf);
 
-				/* @var $fileObject TYPO3\CMS\Core\Resource\File */
-				$fileObject = $resFactory->getFileObject(str_replace('file:', '', $link));
-
-				return $fileObject->getPublicUrl();
-
-			}
-			elseif (preg_match('/\d/', $link) === 1) {
-
-				return '/index.php?id=' . $link;
-
-			}
-			else  {
-				return '//' . $link;
-			}
+			return $link;
 		}
 		else {
-			return $item->getPublicUrl();
+			return '<a href="' . $item->getPublicUrl() . '" alt="' . $item->getName() . '">' . $item->getName() . '</a>';
 		}
 	}
 }
