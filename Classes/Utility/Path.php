@@ -73,9 +73,7 @@ class Tx_Mkfalexplorer_Utility_Path {
 				'title' => $item->getName(),
 				'no_cache' => 0,
 				'parameter' => $item->getProperty('link'),
-				'additionalParams' => '',
 				'value' => $item->getName(),
-				'wrap' => '<div class="file-link">|</div>',
 				'useCacheHash' => 1);
 
 			/* @var $cObject TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer */
