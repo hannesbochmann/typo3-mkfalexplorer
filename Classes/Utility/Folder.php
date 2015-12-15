@@ -91,6 +91,8 @@ class Tx_Mkfalexplorer_Utility_Folder {
 			} else {
 				if(count(self::getFilesInFolder($storageObject->getUid(), $folder)) > 0){
 					$result[$folder]['files'] = self::getFilesInFolder($storageId, $folder);
+				} else {
+					$result[$folder] = $folder;
 				}
 			}
 		}
