@@ -113,7 +113,7 @@ class Tx_Mkfalexplorer_Utility_Folder {
 
 		$folder = new Folder($storageObject, $identifyer, 'Filelist');
 
-		$lastPathPart  = end(explode('/', trim($folder->getIdentifier(), '/')));
+		$lastPathPart  = str_replace('_', ' ', end(explode('/', trim($folder->getIdentifier(), '/'))));
 
 		return $lastPathPart;
 	}

@@ -79,12 +79,12 @@ class Tx_Mkfalexplorer_Utility_Path {
 			/* @var $cObject TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer */
 			$cObject = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer');
 
-			$link = $cObject->typolink($item->getName(), $typolink_conf);
+			$link = $cObject->typolink(str_replace('_', ' ', $item->getName()), $typolink_conf);
 
 			return $link;
 		}
 		else {
-			return '<a href="' . $item->getPublicUrl() . '" alt="' . $item->getName() . '">' . $item->getName() . '</a>';
+			return '<a href="' . $item->getPublicUrl() . '" alt="' . str_replace('_', ' ', $item->getName()) . '">' . str_replace('_', ' ', $item->getName()) . '</a>';
 		}
 	}
 }
