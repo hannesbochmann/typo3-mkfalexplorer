@@ -72,7 +72,7 @@ class Tx_Mkfalexplorer_Views_ExplorerWithFiles extends tx_rnbase_view_Base {
 
 		//@TODO: in Template auslagern
 		foreach ($arr as $item => $value) {
-			if(get_class(array_values($value)[0]) =='TYPO3\CMS\Core\Resource\File'){
+			if(@get_class(array_values($value)[0]) =='TYPO3\CMS\Core\Resource\File'){
 				/* @var $file \TYPO3\CMS\Core\Resource\File */
 				foreach ($value as $file) {
 					$return .= '<li class="file"><div class="file-image"><img src="' . $linkUtility::getIconImagePath($file) . '"/>'. $linkUtility::getLink($file) .' </div></li>';

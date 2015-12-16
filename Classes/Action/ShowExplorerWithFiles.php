@@ -58,7 +58,9 @@ class Tx_Mkfalexplorer_Action_ShowExplorerWithFiles extends tx_rnbase_action_Bas
 
 		$folderArray = $folderUtility::getFoldersAndFiles($storageId, $folderIdentifyer);
 		$folderarrayComp[$baseFolderName] = $folderArray;
-		$folderarrayComp['files'] = $folderUtility::getFilesInFolder($storageId, $folderIdentifyer);
+		if(count($folderUtility::getFilesInFolder($storageId, $folderIdentifyer)) > 0) {
+			$folderarrayComp['files'] = $folderUtility::getFilesInFolder( $storageId, $folderIdentifyer );
+		}
 
 		$viewData->offsetSet('folders', $folderarrayComp);
 		$viewData->offsetSet('baseFolderName', $folderUtility::getFolderName($storageId, $folderIdentifyer));
