@@ -1,10 +1,8 @@
 <?php
-use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
-
-/**
+/***************************************************************
  *  Copyright notice
  *
- *  (c) 2015 DMK E-Business GmbH <dev@dmk-ebusiness.de>
+ *  (c) 2009 Rene Nitzsche (rene[@]system25.de)
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -22,30 +20,41 @@ use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- */
-
+ ***************************************************************/
 
 /**
- * Class that adds the wizard icon.
  *
+ * Tx_Mkfalexplorer_Utility_Wizicon
+ *
+ * @package        TYPO3
+ * @subpackage     mkfalexplorer
+ * @author         Eric Hertwig <dev@dmk-ebusiness.de>
+ * @license        http://www.gnu.org/licenses/lgpl.html
+ *                 GNU Lesser General Public License, version 3 or later
  */
-class Tx_Mkfalexplorer_Utility_Wizicon {
+
+tx_rnbase::load( 'tx_rnbase_util_Extensions' );
+tx_rnbase::load( 'tx_rnbase_util_Wizicon' );
+
+class Tx_Mkfalexplorer_Utility_Wizicon extends tx_rnbase_util_Wizicon {
 
 	/**
-	 * Processing the wizard items array
-	 *
-	 * @param array $wizardItems The wizard items
-	 * @return array Modified array with wizard items
+	 * @return array
 	 */
-	public function proc(array $wizardItems) {
-		$wizardItems['plugins_tx_mkfalexplorer_pi1'] = array(
-			'icon' 			=> ExtensionManagementUtility::extRelPath('mkfalexplorer') . 'ext_icon.gif',
-			'title' 		=> 'LLL:EXT:mkfalexplorer/Resources/Private/Language/Backend.xml:plugin.mkfalexplorer.title',
-			'description' 	=> 'LLL:EXT:mkfalexplorer/Resources/Private/Language/Backend.xml:plugin.mkfalexplorer.description',
-			'params' 		=> '&defVals[tt_content][CType]=list&defVals[tt_content][list_type]=tx_mkfalexplorer'
+	protected function getPluginData() {
+		return array(
+			'tx_mkfalexplorer' => array(
+				'icon'        => tx_rnbase_util_Extensions::extRelPath( 'mkfalexplorer' ) . 'ext_icon.gif',
+				'title'       => 'plugin.mkfalexplorer.title',
+				'description' => 'plugin.mkfalexplorer.description'
+			)
 		);
-		return $wizardItems;
+	}
+
+	/**
+	 * @return string
+	 */
+	protected function getLLFile() {
+		return tx_rnbase_util_Extensions::extPath( 'mkfalexplorer' ) . 'Resources/Private/Language/Backend.xml';
 	}
 }
-
-?>
