@@ -86,9 +86,9 @@ class Tx_Mkfalexplorer_Views_ExplorerWithFiles extends tx_rnbase_view_Base {
 						$this
 					);
 					$return .= '<li class="file"><div class="file-image">' .
-							'<img src="' . $linkUtility::getIconImagePath($file) . '"/>'.
+							'<img src="' . $linkUtility::getIconImagePath($file) . '"/><div class="fileLink">'.
 							$linkUtility::getLink($file) . $additionalFileInfos .
-							' </div></li>';
+							' </div></div></li>';
 				}
 			} else {
 				$return .= '<li><a class="listFolder">' .
