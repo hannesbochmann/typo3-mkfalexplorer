@@ -69,7 +69,8 @@ class Tx_Mkfalexplorer_Marker_Listitem extends tx_rnbase_util_BaseMarker {
 				'confId' => $confId, 'marker' => $marker,
 				'template' => &$template, 'markerArray' => &$markerArray,
 				'subpartArray' => &$subpartArray,
-				'wrappedSubpartArray' => &$wrappedSubpartArray
+				'wrappedSubpartArray' => &$wrappedSubpartArray,
+				'url' => $_POST['url'],
 			),
 			$this
 		);

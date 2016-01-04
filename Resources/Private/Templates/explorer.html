@@ -1,13 +1,15 @@
 ###EXPLORER###
 	<script>
 		function loadFolder(path,folderId ){
+			url = document.URL;
 			jQuery.ajax({
 				url: "index.php",
 				type: "post",
 				data: {
 					eID: "getFileListTable",
 					path: path,
-					folderID: folderId
+					folderID: folderId,
+					url : url
 				},
 				dataType: "html",
 				success: function(response) {

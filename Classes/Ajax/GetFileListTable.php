@@ -53,7 +53,7 @@
 		'flexform'              => $mkfalexplorerTS['flexform'],
 		'locallangFilename'     => $mkfalexplorerTS['locallangFilename'],
 		'mkfalexplorerPath'     => $_POST['path'],
-		'mkfalexplorerfolderId' => $_POST['folderID']
+		'mkfalexplorerfolderId' => $_POST['folderID'],
 	];
 
 	$out = $action->main('', $configurationArray);
