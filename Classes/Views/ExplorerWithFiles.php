@@ -82,8 +82,7 @@ class Tx_Mkfalexplorer_Views_ExplorerWithFiles extends tx_rnbase_view_Base {
 						array(
 							'file' => &$file,
 							'additionalFileInfos'=> &$additionalFileInfos,
-						),
-						$this
+						)
 					);
 					$return .= '<li class="file"><div class="file-image">' .
 							'<img src="' . $linkUtility::getIconImagePath($file) . '"/><div class="fileLink">'.
