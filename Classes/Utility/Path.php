@@ -67,24 +67,30 @@ class Tx_Mkfalexplorer_Utility_Path {
 	 */
 	public static function getLink($item) {
 
+		$title = $item->getProperty('title');
+
+		if(!isset($title)){
+			$title = $item->getName();
+		}
+
 		if($item->getProperty('isLink')) {
 
 			$typolink_conf=array(
-				'title' => $item->getName(),
+				'title' => $title,
 				'no_cache' => 0,
 				'parameter' => $item->getProperty('link'),
-				'value' => $item->getName(),
+				'value' => $title,
 				'useCacheHash' => 1);
 
 			/* @var $cObject TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer */
 			$cObject = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer');
 
-			$link = $cObject->typolink(str_replace('_', ' ', $item->getName()), $typolink_conf);
+			$link = $cObject->typolink(str_replace('_', ' ', $title), $typolink_conf);
 
 			return $link;
 		}
 		else {
-			return '<a href="' . $item->getPublicUrl() . '" alt="' . str_replace('_', ' ', $item->getName()) . '">' . str_replace('_', ' ', $item->getName()) . '</a>';
+			return '<a href="' . $item->getPublicUrl() . '" alt="' . str_replace('_', ' ', $title) . '">' . str_replace('_', ' ', $title) . '</a>';
 		}
 	}
 }
