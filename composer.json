@@ -1,7 +1,7 @@
 {
 	"name" : "dmk/mkfalexplorer",
 	"description" : "Provides an windows explorer function for FAL-References",
-	"version" : "0.0.4",
+	"version" : "0.0.5",
 	"type" : "typo3-cms-extension",
 	"keywords" : ["TYPO3 CMS", "links", "fal", "explorer"],
 	"homepage" : "http://www.dmk-ebusiness.de/",
