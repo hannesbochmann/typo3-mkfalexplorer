@@ -49,13 +49,16 @@ class Tx_Mkfalexplorer_Utility_Path {
 		$extension = $item->getExtension();
 		 // @TODO: Quick'n'Dirty!! schoen machen !!
 
-		if($item->getProperty('isLink'))
-			return '/typo3conf/ext/mkfalexplorer/Resources/Public/Icons/Files/_blank.png';
-
-		if(is_file(PATH_site . 'typo3conf/ext/mkfalexplorer/Resources/Public/Icons/Files/' . $extension . '.png'))
+		if ($item->getProperty('isLink')) {
+			return '/typo3conf/ext/mkfalexplorer/Resources/Public/Icons/Files/shortcut.png';
+		} else if (
+			is_file(PATH_site . 'typo3conf/ext/mkfalexplorer/Resources/Public/Icons/Files/' . $extension . '.png')
+		) {
 			return '/typo3conf/ext/mkfalexplorer/Resources/Public/Icons/Files/' . $extension . '.png';
-		else
+		}
+		else {
 			return '/typo3conf/ext/mkfalexplorer/Resources/Public/Icons/Files/_blank.png';
+		}
 	}
 
 	/**
