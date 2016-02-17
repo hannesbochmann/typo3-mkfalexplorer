@@ -78,12 +78,18 @@ class Tx_Mkfalexplorer_Utility_Path {
 
 		if($item->getProperty('isLink')) {
 
-			$typolink_conf=array(
+			$typolink_conf = array(
 				'title' => $title,
 				'no_cache' => 0,
 				'parameter' => $item->getProperty('link'),
 				'value' => $title,
-				'useCacheHash' => 1);
+				'useCacheHash' => 1,
+			);
+
+			$subdir = self::getPathFromFalPathString($item->getProperty('linksubdir'));
+			if ($subdir != '') {
+				$typolink_conf['section'] = $subdir;
+			}
 
 			/* @var $cObject TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer */
 			$cObject = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer');
@@ -95,5 +101,17 @@ class Tx_Mkfalexplorer_Utility_Path {
 		else {
 			return '<a href="' . $item->getPublicUrl() . '" alt="' . str_replace('_', ' ', $title) . '">' . str_replace('_', ' ', $title) . '</a>';
 		}
+	}
+
+	/**
+	 * Returns the Path
+	 * removes Type and storage prefix e.g. file:1:
+	 *
+	 * @param string $pathString
+	 * @return string
+	 */
+	public static function getPathFromFalPathString($pathString) {
+		$subDirParts = explode(':', $pathString);
+		return (is_array($subDirParts) ? end($subDirParts) : '');
 	}
 }

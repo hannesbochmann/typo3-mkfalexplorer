@@ -23,6 +23,7 @@
  */
 
 tx_rnbase::load('tx_rnbase_action_BaseIOC');
+tx_rnbase::load('Tx_Mkfalexplorer_Utility_Path');
 
 /**
  *
@@ -56,7 +57,12 @@ class Tx_Mkfalexplorer_Action_ShowExplorer extends tx_rnbase_action_BaseIOC {
 		$folderArray = $folderUtility::getFolder($storageId, $folderIdentifyer);
 		$folderarrayComp[$baseFolderName] = $folderArray;
 
+		$subDir = Tx_Mkfalexplorer_Utility_Path::getPathFromFalPathString(
+			$configurations->get('subdir')
+		);
+
 		$viewData->offsetSet('folders', $folderarrayComp);
+		$viewData->offsetSet('subdir', $subDir);
 		$viewData->offsetSet('baseFolderName', $folderUtility::getFolderName($storageId, $folderIdentifyer));
 
 		return null;

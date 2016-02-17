@@ -7,6 +7,7 @@
 		<languageKey index="default" type="array">
 			<label index="sys_file_metadata.isLink">is Link?</label>
 			<label index="sys_file_metadata.link">Link</label>
+			<label index="sys_file_metadata.linksubdir">Link to open subdir</label>
 
 			<label index="plugin.mkfalexplorer.title">MK Falexplorer</label>
 			<label index="plugin.mkfalexplorer.description">Tree and Listview for FAL </label>
@@ -17,11 +18,13 @@
 			<label index="plugin.mkfalexplorer.flexform.showExplorerWithFiles">Show FolderExplorer with Files</label>
 			<label index="plugin.mkfalexplorer.flexform.data">Data Source</label>
 			<label index="plugin.mkfalexplorer.flexform.path">Choose Folder</label>
+			<label index="plugin.mkfalexplorer.flexform.subdir">Open Subdir</label>
 		</languageKey>
 
 		<languageKey index="de" type="array">
 			<label index="sys_file_metadata.isLink">Datei als Link behandeln</label>
 			<label index="sys_file_metadata.link">Linkauswahl</label>
+			<label index="sys_file_metadata.linksubdir">Link in geöffneten Ordner</label>
 
 			<label index="plugin.mkfalexplorer.title">MK Falexplorer</label>
 			<label index="plugin.mkfalexplorer.description">Baum- und Listenansichten fuer Ordner- und Dateistrukturen</label>
@@ -31,7 +34,8 @@
 			<label index="plugin.mkfalexplorer.flexform.showFolderexplorer">Ordner in Baumstruktur anzeigen</label>
 			<label index="plugin.mkfalexplorer.flexform.showExplorerWithFiles">Dateien und Ordner als Baumstruktur anzeigen</label>
 			<label index="plugin.mkfalexplorer.flexform.data">Quellordner</label>
-			<label index="plugin.mkfalexplorer.flexform.path">Ordner auswaehlen</label>
+			<label index="plugin.mkfalexplorer.flexform.path">Ordner auswählen</label>
+			<label index="plugin.mkfalexplorer.flexform.subdir">Unterordner öffnen</label>
 		</languageKey>
 
 	</data>

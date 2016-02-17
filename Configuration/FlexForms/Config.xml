@@ -35,6 +35,30 @@
 					</config>
 				</TCEforms>
 			</path>
+			<subdir>
+				<TCEforms>
+					<exclude>0</exclude>
+					<label>LLL:EXT:mkfalexplorer/Resources/Private/Language/Backend.xml:plugin.mkfalexplorer.flexform.subdir</label>
+					<config>
+						<type>input</type>
+						<size>48</size>
+						<eval>trim</eval>
+						<wizards type="array">
+							<_PADDING>2</_PADDING>
+							<link type="array">
+								<type>popup</type>
+								<title>LLL:EXT:mkfalexplorer/Resources/Private/Language/Backend.xml:plugin.mkfalexplorer.flexform.path</title>
+								<icon>link_popup.gif</icon>
+								<script>browse_links.php?mode=wizard&amp;act=folder</script>
+								<params type="array">
+									<blindLinkOptions>page,url,mail,spec,file</blindLinkOptions>
+								</params>
+								<JSopenParams>height=500,width=400,status=0,menubar=0,scrollbars=1</JSopenParams>
+							</link>
+						</wizards>
+					</config>
+				</TCEforms>
+			</subdir>
 			<action>
 				<TCEforms>
 					<label>LLL:EXT:mkfalexplorer/Resources/Private/Language/Backend.xml:plugin.mkfalexplorer.flexform.options</label>

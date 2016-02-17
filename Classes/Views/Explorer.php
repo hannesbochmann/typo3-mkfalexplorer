@@ -32,11 +32,13 @@ class Tx_Mkfalexplorer_Views_Explorer extends tx_rnbase_view_Base {
 		$storageId = $config[1];
 
 		$folders = &$viewData->offsetGet('folders');
+		$markerArray = $subpartArray = array();
+
+		$markerArray['###FOLDEREXPLORER_SUBDIR###'] = &$viewData->offsetGet('subdir');
 
 		$markerArray['###BASEFOLDERNAME###'] = &$viewData->offsetGet('baseFolderName');
 		$markerArray['###FOLDEREXPLORER###'] = self::makeExplorer($folders, $configurations, $storageId);
 
-		$subpartArray = array();
 
 		$out = tx_rnbase_util_Templates::substituteMarkerArrayCached($template, $markerArray, $subpartArray);
 		return $out;

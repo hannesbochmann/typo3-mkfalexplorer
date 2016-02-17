@@ -24,7 +24,7 @@
 
 use \TYPO3\CMS\Core\Utility\GeneralUtility;
 tx_rnbase::load('tx_rnbase_action_BaseIOC');
-
+tx_rnbase::load('Tx_Mkfalexplorer_Utility_Path');
 /**
  *
  * Tx_Mkfalexplorer_Action_ShowExplorerWithFiles
@@ -55,14 +55,18 @@ class Tx_Mkfalexplorer_Action_ShowExplorerWithFiles extends tx_rnbase_action_Bas
 
 		$baseFolderName = $folderUtility->getFolderName($storageId, $folderIdentifyer);
 
-
 		$folderArray = $folderUtility::getFoldersAndFiles($storageId, $folderIdentifyer);
 		$folderarrayComp[$baseFolderName] = $folderArray;
 		if(count($folderUtility::getFilesInFolder($storageId, $folderIdentifyer)) > 0) {
 			$folderarrayComp['files'] = $folderUtility::getFilesInFolder( $storageId, $folderIdentifyer );
 		}
 
+		$subDir = Tx_Mkfalexplorer_Utility_Path::getPathFromFalPathString(
+			$configurations->get('subdir')
+		);
+
 		$viewData->offsetSet('folders', $folderarrayComp);
+		$viewData->offsetSet('subdir', $subDir);
 		$viewData->offsetSet('baseFolderName', $folderUtility::getFolderName($storageId, $folderIdentifyer));
 
 		return null;

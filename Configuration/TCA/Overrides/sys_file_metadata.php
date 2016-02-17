@@ -20,7 +20,7 @@ tx_rnbase::load('tx_mklib_util_TCA');
 			)
 		),
 		'link' => array(
-			'exclide' => 1,
+			'exclude' => 1,
 			'label' => 'LLL:EXT:mkfalexplorer/Resources/Private/Language/Backend.xml:sys_file_metadata.link',
 			'displayCond' => array(
 				'AND' => array(
@@ -40,10 +40,33 @@ tx_rnbase::load('tx_mklib_util_TCA');
 					)
 				)
 			)
+		),
+		'linksubdir' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:mkfalexplorer/Resources/Private/Language/Backend.xml:sys_file_metadata.linksubdir',
+			'displayCond' => array(
+				'AND' => array(
+					'FIELD:isLink:REQ:true',
+				)
+			),
+			'config' => array (
+				'type' => 'input',
+				'wizards' => tx_mklib_util_TCA::getWizards(
+					'',
+					array(
+						'link' => array (
+							'params'   => array(
+								'blindLinkOptions' => 'page,url,mail,spec,file'
+							),
+							'script' => 'browse_links.php?mode=wizard&amp;act=folder'
+						)
+					)
+				)
+			)
 		)
 	)
 );
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('sys_file_metadata', 'isLink,link', '', 'after:title');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('sys_file_metadata', 'isLink,link,linksubdir,', '', 'after:title');
 
 $GLOBALS['TCA']['sys_file_metadata']['ctrl']['requestUpdate'] = 'isLink';
