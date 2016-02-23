@@ -84,6 +84,8 @@ class Tx_Mkfalexplorer_Utility_Path {
 				'parameter' => $item->getProperty('link'),
 				'value' => $title,
 				'useCacheHash' => 1,
+				'extTarget' => '_blank',
+				'target' => '_blank',
 			);
 
 			$subdir = self::getPathFromFalPathString($item->getProperty('linksubdir'));
@@ -99,7 +101,7 @@ class Tx_Mkfalexplorer_Utility_Path {
 			return $link;
 		}
 		else {
-			return '<a href="' . $item->getPublicUrl() . '" alt="' . str_replace('_', ' ', $title) . '">' . str_replace('_', ' ', $title) . '</a>';
+			return '<a target="_blank" href="' . $item->getPublicUrl() . '" alt="' . str_replace('_', ' ', $title) . '">' . str_replace('_', ' ', $title) . '</a>';
 		}
 	}
 
