@@ -21,6 +21,6 @@
 	},
 	"require" : { 
 		"digedag/rn-base" : "~0.15.15",
-		"typo3/cms" : "~6.2@stable"
+		"typo3/cms" : ">=6.2.0"
 	}
 }
