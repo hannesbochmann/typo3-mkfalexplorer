@@ -67,7 +67,7 @@ class Tx_Mkfalexplorer_Views_ExplorerWithFiles extends tx_rnbase_view_Base {
 		$folderUtility = tx_rnbase::makeInstance( 'Tx_Mkfalexplorer_Utility_Folder' );
 
 		/* @var $linkUtility Tx_Mkfalexplorer_Utility_Path */
-		$linkUtility = tx_rnbase::makeInstance('Tx_Mkfalexplorer_Utility_Path');
+		$linkUtility = tx_rnbase::makeInstance('Tx_Mkfalexplorer_Utility_Path', $configurations->_dataStore['iconsPath']);
 
 		$return = '<ul>';
 

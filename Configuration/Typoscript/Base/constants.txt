@@ -1,4 +1,5 @@
 ### System-Pfade
 plugin.tx_mkfalexplorer {
 	path.templates = EXT:mkfalexplorer/Resources/Private/Templates
+	path.filetype_icons = typo3conf/ext/mkfalexplorer/Resources/Public/Icons/Files/
 }
