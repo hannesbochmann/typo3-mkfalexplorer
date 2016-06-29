@@ -91,7 +91,7 @@ class Tx_Mkfalexplorer_Views_ExplorerWithFiles extends tx_rnbase_view_Base {
 							' </div></div></li>';
 				}
 			} else {
-				$return .= '<li><a class="listFolder" data-path="' . $configurations->_dataStore['path'] . '" data-folderId="'. $item .'">' .
+				$return .= '<li><a class="listFolder" data-path="' . $configurations->getConfigArray()['path'] . '" data-folderId="'. $item .'">' .
 							$folderUtility::getFolderName( $storageId, $item ) . '</a>' .
 							( is_array( $value ) ?
 								self::makeExplorer( $value, $configurations, $storageId ) :

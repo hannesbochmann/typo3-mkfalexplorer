@@ -55,8 +55,8 @@ class Tx_Mkfalexplorer_Utility_Path {
 	 */
 	public function __construct($configurations = null)
 	{
-		self::$iconsPath = $configurations->_dataStore['iconsPath']?$configurations->_dataStore['iconsPath']:'typo3conf/ext/mkfalexplorer/Resources/Public/Icons/Files/';
-		self::$iconsType = $configurations->_dataStore['iconsType']?$configurations->_dataStore['iconsType']:'png';
+		self::$iconsPath = $configurations->getConfigArray()['iconsPath']?$configurations->getConfigArray()['iconsPath']:'typo3conf/ext/mkfalexplorer/Resources/Public/Icons/Files/';
+		self::$iconsType = $configurations->getConfigArray()['iconsType']?$configurations->getConfigArray()['iconsType']:'png';
 	}
 
 	/**

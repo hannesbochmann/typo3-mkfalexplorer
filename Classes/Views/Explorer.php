@@ -70,7 +70,7 @@ class Tx_Mkfalexplorer_Views_Explorer extends tx_rnbase_view_Base {
 
 		//@TODO: in Template auslagern
 		foreach ($arr as $item => $value) {
-			$return .= '<li><a class="listFolder" data-path="' . $configurations->_dataStore['path'] . '" data-folderId="'. $item .'">' .
+			$return .= '<li><a class="listFolder" data-path="' . $configurations->getConfigArray()['path'] . '" data-folderId="'. $item .'">' .
 					   $folderUtility::getFolderName($storageId, $item) . '</a>'.
 						   (is_array($value) ?
 							self::makeExplorer($value, $configurations, $storageId) :
