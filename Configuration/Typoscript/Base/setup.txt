@@ -8,6 +8,8 @@ plugin.tx_mkfalexplorer {
 	flexform = Config.xml
 	qualifier = mkfalexplorer
 	templatePath = {$plugin.tx_mkfalexplorer.path.templates}
+	iconsPath = {$plugin.tx_mkfalexplorer.path.filetype_icons}
+	iconsType = {$plugin.tx_mkfalexplorer.icons.type}
 	locallangFilename = EXT:mkfalexplorer/Resources/Private/Language/locallang.xml
 }
 

@@ -24,8 +24,14 @@
 							<link type="array">
 								<type>popup</type>
 								<title>LLL:EXT:mkfalexplorer/Resources/Private/Language/Backend.xml:plugin.mkfalexplorer.flexform.path</title>
-								<icon>link_popup.gif</icon>
-								<script>browse_links.php?mode=wizard&amp;act=folder</script>
+								<icon>link_popup.gif</icon>								
+								<module type="array">
+									<name>wizard_element_browser</name>
+									<urlParameters type="array">
+										<mode>wizard</mode>
+										<act>folder</act>
+									</urlParameters>
+								</module>
 								<params type="array">
 									<blindLinkOptions>page,url,mail,spec,file</blindLinkOptions>
 								</params>
@@ -49,7 +55,13 @@
 								<type>popup</type>
 								<title>LLL:EXT:mkfalexplorer/Resources/Private/Language/Backend.xml:plugin.mkfalexplorer.flexform.path</title>
 								<icon>link_popup.gif</icon>
-								<script>browse_links.php?mode=wizard&amp;act=folder</script>
+								<module type="array">
+									<name>wizard_element_browser</name>
+									<urlParameters type="array">
+										<mode>wizard</mode>
+										<act>folder</act>
+									</urlParameters>
+								</module>
 								<params type="array">
 									<blindLinkOptions>page,url,mail,spec,file</blindLinkOptions>
 								</params>

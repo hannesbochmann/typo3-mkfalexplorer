@@ -36,6 +36,28 @@ use \TYPO3\CMS\Core\Resource\ResourceFactory;
  * GNU Lesser General Public License, version 3 or later
  */
 class Tx_Mkfalexplorer_Utility_Path {
+	/**
+	 * Path to folder with images (diferent types of files)
+	 *
+	 * @var IconsPath
+	 */
+	private static $iconsPath = '';
+	
+	/**
+	 * File type of icons i.e. 'png'
+	 *
+	 * @var IconsType
+	 */
+	private static $iconsType = '';
+	
+	/**
+	 * Construct
+	 */
+	public function __construct($configurations = null)
+	{
+		self::$iconsPath = $configurations->getConfigArray()['iconsPath']?$configurations->getConfigArray()['iconsPath']:'typo3conf/ext/mkfalexplorer/Resources/Public/Icons/Files/';
+		self::$iconsType = $configurations->getConfigArray()['iconsType']?$configurations->getConfigArray()['iconsType']:'png';
+	}
 
 	/**
 	 * Return the Filetype Icon Path
@@ -45,19 +67,22 @@ class Tx_Mkfalexplorer_Utility_Path {
 	 * @return string
 	 */
 	public static function getIconImagePath($item) {
-
+		
+		$iconsPath = self::$iconsPath;
+		$iconsType = self::$iconsType;
+		
 		$extension = $item->getExtension();
 		 // @TODO: Quick'n'Dirty!! schoen machen !!
 
 		if ($item->getProperty('isLink')) {
-			return '/typo3conf/ext/mkfalexplorer/Resources/Public/Icons/Files/shortcut.png';
+			return '/'.$iconsPath.'shortcut.'.$iconsType;
 		} else if (
-			is_file(PATH_site . 'typo3conf/ext/mkfalexplorer/Resources/Public/Icons/Files/' . $extension . '.png')
+			is_file(PATH_site . $iconsPath . $extension . '.'.$iconsType)
 		) {
-			return '/typo3conf/ext/mkfalexplorer/Resources/Public/Icons/Files/' . $extension . '.png';
+			return '/'. $iconsPath . $extension . '.'.$iconsType;
 		}
 		else {
-			return '/typo3conf/ext/mkfalexplorer/Resources/Public/Icons/Files/_blank.png';
+			return '/'. $iconsPath .'_blank.'.$iconsType;
 		}
 	}
 
