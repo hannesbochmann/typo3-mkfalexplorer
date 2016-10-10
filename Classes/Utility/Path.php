@@ -42,14 +42,14 @@ class Tx_Mkfalexplorer_Utility_Path {
 	 * @var IconsPath
 	 */
 	private static $iconsPath = '';
-	
+
 	/**
 	 * File type of icons i.e. 'png'
 	 *
 	 * @var IconsType
 	 */
 	private static $iconsType = '';
-	
+
 	/**
 	 * Construct
 	 */
@@ -67,10 +67,10 @@ class Tx_Mkfalexplorer_Utility_Path {
 	 * @return string
 	 */
 	public static function getIconImagePath($item) {
-		
+
 		$iconsPath = self::$iconsPath;
 		$iconsType = self::$iconsType;
-		
+
 		$extension = $item->getExtension();
 		 // @TODO: Quick'n'Dirty!! schoen machen !!
 
@@ -119,7 +119,7 @@ class Tx_Mkfalexplorer_Utility_Path {
 			}
 
 			/* @var $cObject TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer */
-			$cObject = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer');
+			$cObject = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer');
 
 			$link = $cObject->typolink(str_replace('_', ' ', $title), $typolink_conf);
 

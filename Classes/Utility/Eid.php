@@ -43,12 +43,12 @@ class Tx_Mkfalexplorer_Utility_Eid {
 	public function getTSWithPageID($pageUid = 0) {
 
 		/* @var $sysPageObj \TYPO3\CMS\Frontend\Page\PageRepository*/
-		$sysPageObj = tx_rnbase::makeInstance('\TYPO3\CMS\Frontend\Page\PageRepository');
+		$sysPageObj = tx_rnbase::makeInstance('TYPO3\\CMS\\Frontend\\Page\\PageRepository');
 
 		$rootLine = $sysPageObj->getRootLine($pageUid);
 
 		/* @var $typoscriptParser \TYPO3\CMS\Core\TypoScript\ExtendedTemplateService */
-		$typoscriptParser = tx_rnbase::makeInstance('\TYPO3\CMS\Core\TypoScript\ExtendedTemplateService');
+		$typoscriptParser = tx_rnbase::makeInstance('TYPO3\\CMS\\Core\\TypoScript\\ExtendedTemplateService');
 		$typoscriptParser->tt_track = 0;
 		$typoscriptParser->init();
 		$typoscriptParser->runThroughTemplates($rootLine);
